@@ -20,7 +20,17 @@ macro_rules! expanded_hi {
         println!("Multiple arguments? {}", $x);
     };
 
+    ( $( $x:expr ), *) => {
+        {
+            $(
+                println!("And another: {}", $x);
+            )*
+        }
+    };
+
 }
+
+
 
 /*
 
@@ -59,4 +69,5 @@ fn main() {
     simple_hi!();
     expanded_hi!();
     expanded_hi!("meaningless");
+    expanded_hi!("meaningless", "further", "again");
 }
