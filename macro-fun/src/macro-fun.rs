@@ -10,6 +10,30 @@ macro_rules! simple_hi {
     };
 }
 
+macro_rules! expanded_hi {
+
+    () => {
+        println!("Hello WORD");
+    };
+
+    ( $x:expr ) => {
+        println!("Multiple arguments? {}", $x);
+    };
+
+}
+
+/*
+
+errors:
+
+error: expected one of: `*`, `+`, or `?` -->
+    pattern matching means parentheses expression repeats? Try without
+
+error: variable 'x' is still repeating at this depth ->
+    If $x is a repeating expression, that needs handling via range
+
+*/
+
 
 //https://doc.rust-lang.org/book/ch19-06-macros.html
 //Simplified version of the vec! macro definition
@@ -32,5 +56,7 @@ macro_rules! vec {
 
 
 fn main() {
-    println!("Hello, world!");
+    simple_hi!();
+    expanded_hi!();
+    expanded_hi!("meaningless");
 }
